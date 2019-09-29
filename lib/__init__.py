@@ -1,4 +1,5 @@
-class Number:
-
-    def __init__(self, index):
-        self.index = index
+# class Box:
+#
+#     def __init__(self, index):
+#         self.index = index
+#         self.possible_numbers = []
