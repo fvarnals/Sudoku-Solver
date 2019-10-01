@@ -24,3 +24,6 @@ sudoku = Sudoku(puzzle)
 def test_sudoku_has_box():
     assert sudoku.boxes[(1,1)].index == (1,1)
     assert sudoku.boxes[(3,7)].index == (3,7)
+
+def test_box_values():
+    assert sudoku.boxes[(0,0)].possible_values == [5]
