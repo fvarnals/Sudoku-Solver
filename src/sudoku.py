@@ -47,4 +47,29 @@ class Sudoku:
             subgrid_y = 1
         else:
             subgrid_y = 2
-        return (subgrid_x,subgrid_y)
+        return (subgrid_x,subgrid_y
+
+        )
+
+    def get_numbers_in_subgrid(self,box):
+        subgrid = self.get_subgrid(box)
+        subgrid_numbers = []
+        if subgrid[0] == 0:
+            rows = [0,1,2]
+        elif subgrid[0] == 1:
+            rows = [3,4,5]
+        else:
+            rows = [6,7,8]
+
+        if subgrid[1] == 0:
+            cols = [0,1,2]
+        elif subgrid[1] == 1:
+            cols = [3,4,5]
+        else:
+            cols = [6,7,8]
+
+        for row in rows:
+            for col in cols:
+                subgrid_numbers.append(self.list[row][col])
+
+        return subgrid_numbers
