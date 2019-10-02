@@ -1,5 +1,7 @@
 ## Sudoku Solver
 
+I am using this project as a practice for coding in Python, following a TDD process.
+
 ### Details
 - Language - Python
 
