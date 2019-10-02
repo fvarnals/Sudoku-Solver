@@ -48,3 +48,8 @@ def test_get_numbers_in_subgrid():
     assert sudoku.get_numbers_in_subgrid(box) == [0,6,0,8,0,3,0,2,0]
     box2 = sudoku.boxes[(0,0)]
     assert sudoku.get_numbers_in_subgrid(box2) == [5,3,0,6,0,0,0,9,8]
+
+def test_check_possible_values():
+    box = sudoku.boxes[(4,4)]
+    sudoku.check_possible_values(box) == [7,9,0,6,0,2,0,1,8]
+    assert box.possible_values == [5]

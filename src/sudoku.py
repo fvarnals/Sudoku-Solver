@@ -73,3 +73,11 @@ class Sudoku:
                 subgrid_numbers.append(self.list[row][col])
 
         return subgrid_numbers
+
+    def check_possible_values(self,box):
+      row = self.get_numbers_in_row(box)
+      column = self.get_numbers_in_column(box)
+      subgrid = self.get_numbers_in_subgrid(box)
+      for number in range(1,10):
+          if not number in row and not number in column and number not in subgrid:
+              box.possible_values.append(number)
