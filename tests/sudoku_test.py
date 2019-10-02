@@ -32,3 +32,7 @@ def test_box_values():
 def test_get_numbers_in_row():
     box = sudoku.boxes[(4,4)]
     assert sudoku.get_numbers_in_row(box) == [4,0,0,8,0,3,0,0,1]
+
+def test_get_numbers_in_column():
+    box = sudoku.boxes[(4,4)]
+    assert sudoku.get_numbers_in_column(box) == [7,9,0,6,0,2,0,1,8]

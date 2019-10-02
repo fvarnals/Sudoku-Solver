@@ -21,3 +21,20 @@ class Sudoku:
         row_index = box.index[0]
         row = self.list[row_index]
         return row
+
+    def get_numbers_in_column(self,box):
+        # get list of numbers same column as box
+        column_index = box.index[1]
+        column = []
+        for row in self.list:
+            column.append(row[column_index])
+        return column
+
+    # def check_possible values():
+    #     for box in self.boxes:
+    #
+    #
+
+    #
+    #         for number in range(1,10):
+    #             if not number.in
