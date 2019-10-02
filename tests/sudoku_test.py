@@ -36,3 +36,9 @@ def test_get_numbers_in_row():
 def test_get_numbers_in_column():
     box = sudoku.boxes[(4,4)]
     assert sudoku.get_numbers_in_column(box) == [7,9,0,6,0,2,0,1,8]
+
+def test_get_subgrid():
+    box = sudoku.boxes[(4,4)]
+    box2 = sudoku.boxes[(0,0)]
+    assert sudoku.get_subgrid(box) == (1,1)
+    assert sudoku.get_subgrid(box2) == (0,0)

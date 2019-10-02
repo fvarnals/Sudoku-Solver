@@ -30,11 +30,21 @@ class Sudoku:
             column.append(row[column_index])
         return column
 
-    # def check_possible values():
-    #     for box in self.boxes:
-    #
-    #
+    def get_subgrid(self,box):
+        # get subgrid of given box (0 indexed with coordinates (x,y))
+        row_index = box.index[0]
+        column_index = box.index[1]
+        if row_index/3 < 1:
+            subgrid_x = 0
+        elif 1 <= row_index/3 < 2:
+            subgrid_x = 1
+        else:
+            subgrid_x = 2
 
-    #
-    #         for number in range(1,10):
-    #             if not number.in
+        if column_index/3 < 1:
+            subgrid_y = 0
+        elif 1 <= column_index/3 < 2:
+            subgrid_y = 1
+        else:
+            subgrid_y = 2
+        return (subgrid_x,subgrid_y)
