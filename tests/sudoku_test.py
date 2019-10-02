@@ -1,6 +1,6 @@
 import sys, os
 myPath = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, myPath + '/../lib')
+sys.path.insert(0, myPath + '/../src')
 
 from box import Box
 from sudoku import Sudoku
@@ -27,3 +27,8 @@ def test_sudoku_has_box():
 
 def test_box_values():
     assert sudoku.boxes[(0,0)].possible_values == [5]
+    assert sudoku.boxes[(8,8)].possible_values == [9]
+
+def test_get_numbers_in_row():
+    box = sudoku.boxes[(4,4)]
+    assert sudoku.get_numbers_in_row(box) == [4,0,0,8,0,3,0,0,1]

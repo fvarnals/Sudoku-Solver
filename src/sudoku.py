@@ -1,4 +1,5 @@
 from box import Box
+import numpy as np
 
 class Sudoku:
 
@@ -14,3 +15,9 @@ class Sudoku:
                 # if value is already provided, assign that value to given box
                 if list[x][y] != 0:
                     self.boxes[(x,y)].possible_values = [list[x][y]]
+
+    def get_numbers_in_row(self,box):
+        # get list of numbers in same row as box
+        row_index = box.index[0]
+        row = self.list[row_index]
+        return row
