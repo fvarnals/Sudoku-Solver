@@ -18,13 +18,13 @@ class Sudoku:
 
     def get_numbers_in_row(self,box):
         # get list of numbers in same row as box
-        row_index = box.index[0]
+        row_index = box.index[1]
         row = self.list[row_index]
         return row
 
     def get_numbers_in_column(self,box):
         # get list of numbers same column as box
-        column_index = box.index[1]
+        column_index = box.index[0]
         column = []
         for row in self.list:
             column.append(row[column_index])
@@ -54,16 +54,16 @@ class Sudoku:
     def get_numbers_in_subgrid(self,box):
         subgrid = self.get_subgrid(box)
         subgrid_numbers = []
-        if subgrid[0] == 0:
+        if subgrid[1] == 0:
             rows = [0,1,2]
-        elif subgrid[0] == 1:
+        elif subgrid[1] == 1:
             rows = [3,4,5]
         else:
             rows = [6,7,8]
 
-        if subgrid[1] == 0:
+        if subgrid[0] == 0:
             cols = [0,1,2]
-        elif subgrid[1] == 1:
+        elif subgrid[0] == 1:
             cols = [3,4,5]
         else:
             cols = [6,7,8]
@@ -79,5 +79,5 @@ class Sudoku:
       column = self.get_numbers_in_column(box)
       subgrid = self.get_numbers_in_subgrid(box)
       for number in range(1,10):
-          if not number in row and not number in column and number not in subgrid:
+          if not number in row and not number in column and not number in subgrid:
               box.possible_values.append(number)

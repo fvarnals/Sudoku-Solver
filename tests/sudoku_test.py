@@ -32,6 +32,8 @@ def test_box_values():
 def test_get_numbers_in_row():
     box = sudoku.boxes[(4,4)]
     assert sudoku.get_numbers_in_row(box) == [4,0,0,8,0,3,0,0,1]
+    box = sudoku.boxes[(6,3)]
+    assert sudoku.get_numbers_in_row(box) == [8,0,0,0,6,0,0,0,3]
 
 def test_get_numbers_in_column():
     box = sudoku.boxes[(4,4)]
@@ -40,16 +42,23 @@ def test_get_numbers_in_column():
 def test_get_subgrid():
     box = sudoku.boxes[(4,4)]
     box2 = sudoku.boxes[(0,0)]
+    box3 = sudoku.boxes[(6,3)]
     assert sudoku.get_subgrid(box) == (1,1)
     assert sudoku.get_subgrid(box2) == (0,0)
+    assert sudoku.get_subgrid(box3) == (2,1)
 
 def test_get_numbers_in_subgrid():
     box = sudoku.boxes[(4,4)]
     assert sudoku.get_numbers_in_subgrid(box) == [0,6,0,8,0,3,0,2,0]
     box2 = sudoku.boxes[(0,0)]
     assert sudoku.get_numbers_in_subgrid(box2) == [5,3,0,6,0,0,0,9,8]
+    box3 = sudoku.boxes[(6,3)]
+    assert sudoku.get_numbers_in_subgrid(box3) == [0,0,3,0,0,1,0,0,6]
 
 def test_check_possible_values():
     box = sudoku.boxes[(4,4)]
-    sudoku.check_possible_values(box) == [7,9,0,6,0,2,0,1,8]
+    sudoku.check_possible_values(box)
     assert box.possible_values == [5]
+    box = sudoku.boxes[(6,3)]
+    sudoku.check_possible_values(box)
+    assert box.possible_values == [4,5,7,9]
