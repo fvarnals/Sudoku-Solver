@@ -62,3 +62,8 @@ def test_check_possible_values():
     box = sudoku.boxes[(6,3)]
     sudoku.check_possible_values(box)
     assert box.possible_values == [4,5,7,9]
+
+def test_update_values():
+    assert sudoku.list[4][4] == 0
+    sudoku.update_values()
+    assert sudoku.list[4][4] == 5

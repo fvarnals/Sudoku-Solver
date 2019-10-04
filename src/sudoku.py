@@ -81,3 +81,11 @@ class Sudoku:
       for number in range(1,10):
           if not number in row and not number in column and not number in subgrid:
               box.possible_values.append(number)
+
+    def update_values(self):
+        for box in self.boxes:
+            box = self.boxes[box]
+            x_coord = box.index[0]
+            y_coord = box.index[1]
+            if len(box.possible_values) == 1:
+                self.list[y_coord][x_coord] = box.possible_values[0]
