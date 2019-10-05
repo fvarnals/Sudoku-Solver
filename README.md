@@ -2,6 +2,12 @@
 
 I am using this project as a practice for coding in Python, following a TDD process.
 
+### How to run
+
+- Fork or clone this repo, and run using from the command line using ```python3 src```
+- Follow instructions provided, to enter unsolved sudoku.
+- Input can be in any format, as long as it is a list of numbers starting from the top left corner of the sudoku, following through to the bottom right (punctuation, spaces etc make no difference).
+
 ### Details
 - Language - Python
 
