@@ -4,11 +4,13 @@ sys.path.insert(0, myPath + '/../src')
 
 from box import Box
 from sudoku import Sudoku
-box = Box((2,2))
+box = Box(2,3,0)
 
-def test_box_index():
-    assert box.index == (2,2)
-    # assert box.possibilities == []
+def test_box_row():
+    assert box.row == 2
+
+def test_box_column():
+    assert box.column == 3
 
 puzzle = [[5,3,0,0,7,0,0,0,0],
           [6,0,0,1,9,5,0,0,0],
@@ -21,49 +23,52 @@ puzzle = [[5,3,0,0,7,0,0,0,0],
           [0,0,0,0,8,0,0,7,9]]
 
 sudoku = Sudoku(puzzle)
-def test_sudoku_has_box():
-    assert sudoku.boxes[(1,1)].index == (1,1)
-    assert sudoku.boxes[(3,7)].index == (3,7)
+def test_sudoku_stores_unresolved_values():
+    assert type(sudoku.unresolved_values) is dict
 
-def test_box_values():
-    assert sudoku.boxes[(0,0)].possible_values == [5]
-    assert sudoku.boxes[(8,8)].possible_values == [9]
+# def test_box_possible_values():
+#     box = sudoku.unresolved_values[20]
+#     assert box.possible_values == [5]
+
+# def test_box_possible_values():
 
 def test_get_numbers_in_row():
-    box = sudoku.boxes[(4,4)]
-    assert sudoku.get_numbers_in_row(box) == [4,0,0,8,0,3,0,0,1]
-    box = sudoku.boxes[(6,3)]
-    assert sudoku.get_numbers_in_row(box) == [8,0,0,0,6,0,0,0,3]
+    box = sudoku.unresolved_values['20']
+    assert sudoku.get_numbers_in_row(box) == [0,9,8,0,0,0,0,6,0]
 
 def test_get_numbers_in_column():
-    box = sudoku.boxes[(4,4)]
-    assert sudoku.get_numbers_in_column(box) == [7,9,0,6,0,2,0,1,8]
+    box = sudoku.unresolved_values['36']
+    assert sudoku.get_numbers_in_column(box) == [0,0,0,0,0,0,2,0,0]
 
 def test_get_subgrid():
-    box = sudoku.boxes[(4,4)]
-    box2 = sudoku.boxes[(0,0)]
-    box3 = sudoku.boxes[(6,3)]
-    assert sudoku.get_subgrid(box) == (1,1)
-    assert sudoku.get_subgrid(box2) == (0,0)
-    assert sudoku.get_subgrid(box3) == (2,1)
+    box = sudoku.unresolved_values['11']
+    box2 = sudoku.unresolved_values['47']
+    box3 = sudoku.unresolved_values['18']
+    assert sudoku.get_subgrid(box) == (0,0)
+    assert sudoku.get_subgrid(box2) == (1,2)
+    assert sudoku.get_subgrid(box3) == (0,2)
 
 def test_get_numbers_in_subgrid():
-    box = sudoku.boxes[(4,4)]
-    assert sudoku.get_numbers_in_subgrid(box) == [0,6,0,8,0,3,0,2,0]
-    box2 = sudoku.boxes[(0,0)]
-    assert sudoku.get_numbers_in_subgrid(box2) == [5,3,0,6,0,0,0,9,8]
-    box3 = sudoku.boxes[(6,3)]
-    assert sudoku.get_numbers_in_subgrid(box3) == [0,0,3,0,0,1,0,0,6]
+    box = sudoku.unresolved_values['11']
+    box2 = sudoku.unresolved_values['47']
+    box3 = sudoku.unresolved_values['18']
+    assert sudoku.get_numbers_in_subgrid(box) == [5,3,0,6,0,0,0,9,8]
+    assert sudoku.get_numbers_in_subgrid(box2) == [0,0,3,0,0,1,0,0,6]
+    assert sudoku.get_numbers_in_subgrid(box3) == [0,0,0,0,0,0,0,6,0]
 
 def test_check_possible_values():
-    box = sudoku.boxes[(4,4)]
+    box = sudoku.unresolved_values['44']
     sudoku.check_possible_values(box)
     assert box.possible_values == [5]
-    box = sudoku.boxes[(6,3)]
+    box = sudoku.unresolved_values['63']
     sudoku.check_possible_values(box)
-    assert box.possible_values == [4,5,7,9]
+    assert box.possible_values == [3,5,7]
 
 def test_update_values():
-    assert sudoku.list[4][4] == 0
+    assert sudoku.show[4][4] == 0
+    assert sudoku.show[7][7] == 0
+    box = sudoku.unresolved_values['77']
+    sudoku.check_possible_values(box)
     sudoku.update_values()
-    assert sudoku.list[4][4] == 5
+    assert sudoku.show[4][4] == 5
+    assert sudoku.show[7][7] == 3
