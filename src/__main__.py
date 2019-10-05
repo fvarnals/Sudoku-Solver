@@ -1,17 +1,23 @@
 from box import Box
 from sudoku import Sudoku
 
-input = [[5,3,0,0,7,0,0,0,0],
-          [6,0,0,1,9,5,0,0,0],
-          [0,9,8,0,0,0,0,6,0],
-          [8,0,0,0,6,0,0,0,3],
-          [4,0,0,8,0,3,0,0,1],
-          [7,0,0,0,2,0,0,0,6],
-          [0,6,0,0,0,0,2,8,0],
-          [0,0,0,4,1,9,0,0,5],
-          [0,0,0,0,8,0,0,7,9]]
+print('Please provide a 9x9 Sudoku to solve')
 
-sudoku = Sudoku(input)
+sudoku_input = []
+row = []
+
+numbers = input('>')
+
+# iterate through input, compiling numbers into rows of 9 and appending them
+# to sudoku_input
+for character in numbers:
+    if character.isdigit():
+        row.append(int(character))
+        if len(row) == 9:
+            sudoku_input.append(row)
+            row = []
+
+sudoku = Sudoku(sudoku_input)
 
 while any(0 in row for row in sudoku.show):
     for box in sudoku.unresolved_values.values():
