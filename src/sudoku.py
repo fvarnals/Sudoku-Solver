@@ -77,6 +77,7 @@ class Sudoku:
       row = self.get_numbers_in_row(box)
       column = self.get_numbers_in_column(box)
       subgrid = self.get_numbers_in_subgrid(box)
+      box.possible_values = []
       for number in range(1,10):
           if not number in row and not number in column and not number in subgrid:
               box.possible_values.append(number)

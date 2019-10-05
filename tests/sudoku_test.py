@@ -26,12 +26,6 @@ sudoku = Sudoku(puzzle)
 def test_sudoku_stores_unresolved_values():
     assert type(sudoku.unresolved_values) is dict
 
-# def test_box_possible_values():
-#     box = sudoku.unresolved_values[20]
-#     assert box.possible_values == [5]
-
-# def test_box_possible_values():
-
 def test_get_numbers_in_row():
     box = sudoku.unresolved_values['20']
     assert sudoku.get_numbers_in_row(box) == [0,9,8,0,0,0,0,6,0]

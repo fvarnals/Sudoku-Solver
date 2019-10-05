@@ -13,11 +13,9 @@ input = [[5,3,0,0,7,0,0,0,0],
 
 sudoku = Sudoku(input)
 
-stop = ''
-
-for number in range(1,5):
-    for box in sudoku.boxes:
-        box = sudoku.boxes[box]
+while any(0 in row for row in sudoku.show):
+    for box in sudoku.unresolved_values.values():
         sudoku.check_possible_values(box)
     sudoku.update_values()
-    print(sudoku.list)
+
+print(sudoku.show)
